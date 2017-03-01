@@ -3,7 +3,6 @@
 namespace light\ViewBlade;
 
 use light\Component;
-use light\ViewBlade\View as ViewBlade;
 
 /**
  * View Blade
@@ -19,7 +18,7 @@ class ViewComponent implements Component
      */
     public function getAccessor()
     {
-        return 'view-blade';
+        return 'view.blade';
     }
 
     /**

@@ -2,15 +2,17 @@
 
 namespace light\ViewBlade;
 
-use duncan3dc\Laravel\Blade;
-use duncan3dc\Laravel\BladeInstance;
+use Xiaoler\Blade\Factory;
+use Xiaoler\Blade\FileViewFinder;
+use Xiaoler\Blade\Engines\CompilerEngine;
+use Xiaoler\Blade\Compilers\BladeCompiler;
 
 /**
- * View 层
+ * View Blade
  *
  * @package light
  */
-class View
+class ViewBlade
 {
     /**
      * 配置
@@ -22,7 +24,7 @@ class View
     /**
      * 实例
      *
-     * @var Blade
+     * @var Factory
      */
     protected $view;
 
@@ -56,9 +58,12 @@ class View
     {
         $this->config = $config;
 
-        $this->view = new BladeInstance($config['path'], $config['cache']);
+        $compiler = new BladeCompiler($config['cache']);
+        $engine = new CompilerEngine($compiler);
+        $finder = new FileViewFinder([$config['path']]);
+        $this->view = new Factory($engine, $finder);
 
-        return $this->view;
+        return $this;
     }
 
     /**
@@ -73,9 +78,10 @@ class View
     {
         $this->viewName = $viewName;
         $this->viewVars = array_merge($this->viewVars, (array) $vars);
+
         $this->rendered = true;
 
-        return $this->view->render($this->viewName, $this->viewVars);
+        return $this->view->make($this->viewName, $this->viewVars)->render();
     }
 
     /**
@@ -84,18 +90,18 @@ class View
      * @param $key
      * @param $value
      *
-     * @return bool
+     * @return $this
      */
     public function assign($key, $value)
     {
         // todo throw error
         if ($this->rendered === true) {
-            return false;
+            return $this;
         }
 
         $this->viewVars = array_merge($this->viewVars, [$key => $value]);
 
-        return true;
+        return $this;
     }
 
     /**

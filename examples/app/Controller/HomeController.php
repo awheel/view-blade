@@ -18,6 +18,6 @@ class HomeController extends Controller
      */
     public function home()
     {
-        return app('view-blade')->render('home', ['title' => 'Home']);
+        return app('view.blade')->render('home', ['title' => 'Home']);
     }
 }
