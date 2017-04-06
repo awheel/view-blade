@@ -98,7 +98,6 @@ class ViewBlade
      */
     public function assign($key, $value)
     {
-        // todo throw error
         if ($this->rendered === true) {
             return $this;
         }
@@ -116,5 +115,15 @@ class ViewBlade
     public function getConfig()
     {
         return $this->config;
+    }
+
+    /**
+     * 获取传递给 view 的数据
+     *
+     * @return array
+     */
+    public function getVars()
+    {
+        return $this->viewVars;
     }
 }
