@@ -1,6 +1,6 @@
 <?php
 
-namespace light\ViewBlade;
+namespace awheel\ViewBlade;
 
 use Xiaoler\Blade\Factory;
 use Xiaoler\Blade\FileViewFinder;
@@ -10,7 +10,7 @@ use Xiaoler\Blade\Compilers\BladeCompiler;
 /**
  * View Blade
  *
- * @package light
+ * @package awheel
  */
 class ViewBlade
 {
@@ -57,6 +57,10 @@ class ViewBlade
     public function __construct($config)
     {
         $this->config = $config;
+
+        if (!file_exists($config['cache'])) {
+            @mkdir($config['cache'], 0777, true);
+        }
 
         $compiler = new BladeCompiler($config['cache']);
         $engine = new CompilerEngine($compiler);

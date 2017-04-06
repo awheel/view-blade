@@ -1,10 +1,10 @@
 {
-    "name": "light/view-blade",
-    "description": "View for Light based blade",
+    "name": "awheel/view-blade",
+    "description": "View for Awheel based blade",
     "type": "library",
     "require": {
         "php": ">=5.4.0",
-        "xiaoler/blade": "^0.3.1"
+        "xiaoler/blade": "^0.3"
     },
     "license": "MIT",
     "authors": [
@@ -16,7 +16,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "light\\ViewBlade\\": "src/"
+            "awheel\\ViewBlade\\": "src/"
         }
     }
 }
