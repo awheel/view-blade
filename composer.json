@@ -1,12 +1,12 @@
 {
     "name": "awheel/view-blade",
     "description": "View for Awheel based blade",
-    "type": "library",
+    "license": "MIT",
+    "homepage": "http://awheel.com",
     "require": {
         "php": ">=5.4.0",
         "xiaoler/blade": "^0.3"
     },
-    "license": "MIT",
     "authors": [
         {
             "name": "fengqi",
